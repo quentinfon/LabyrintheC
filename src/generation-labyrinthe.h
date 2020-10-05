@@ -1,5 +1,7 @@
 #include "stdio.h"
 #include <stdlib.h>
+#include <wincon.h>
+#include <winbase.h>
 
 #ifndef GENERATION_LABYRINTHE_H
 #define GENERATION_LABYRINTHE_H

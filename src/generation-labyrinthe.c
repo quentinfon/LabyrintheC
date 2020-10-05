@@ -1,5 +1,3 @@
-#include <wincon.h>
-#include <winbase.h>
 #include "generation-labyrinthe.h"
 
 #define MAXBONUS 10
