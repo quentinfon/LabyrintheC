@@ -4,6 +4,15 @@
 #ifndef GENERATION_LABYRINTHE_H
 #define GENERATION_LABYRINTHE_H
 
+
+/*
+ * Vals :
+ * -1 : wall
+ *  0 : path
+ *  1 : player
+ *  2 : bonus
+ *  3 : trap
+ * */
 typedef struct case_lab
 {
     int val;
@@ -16,6 +25,10 @@ void display_labyrinthe(case_lab ** lab, int row, int col);
 void display_test_labyrinthe(case_lab ** lab, int row, int col);
 
 case_lab ** init_labyrinthe(int row, int col);
+
+void add_bonus_and_traps(case_lab ** lab, int row, int col);
+
+void add_a_rand_bonus_or_trap(case_lab ** lab, int row, int col, int val);
 
 case_lab * alloue_cases_labyrinthe(int col);
 

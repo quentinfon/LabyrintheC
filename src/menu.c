@@ -95,7 +95,8 @@ void play(case_lab ** lab, int row, int col){
 
     }
 
-    menu(lab, row, col);
+    /*Reset the lab in memory*/
+    menu(NULL, 0, 0);
 
 }
 

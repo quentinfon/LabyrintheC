@@ -1,5 +1,16 @@
+#include <wincon.h>
+#include <winbase.h>
 #include "generation-labyrinthe.h"
 
+#define MAXBONUS 10
+#define MAXTRAP 10
+
+/*Set the console color*/
+void SetColorAndBackground(int ForgC, int BackC)
+{
+    WORD wColor = ((BackC & 0x0F) << 4) + (ForgC & 0x0F);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), wColor);
+}
 
 void display_labyrinthe(case_lab ** lab, int row, int col){
 
@@ -8,7 +19,27 @@ void display_labyrinthe(case_lab ** lab, int row, int col){
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
 
-            printf("%c", lab[i][j].affichage);
+            if (lab[i][j].val == -1){
+
+                SetColorAndBackground(15, 15);
+                printf(" ");
+                SetColorAndBackground(15, 0);
+
+            }else if (lab[i][j].affichage == 'p') {
+
+                SetColorAndBackground(4, 0);
+                printf("x");
+                SetColorAndBackground(15, 0);
+
+            }else if (lab[i][j].affichage == 'b') {
+
+                SetColorAndBackground(14, 0);
+                printf("+");
+                SetColorAndBackground(15, 0);
+
+            }else{
+                printf("%c", lab[i][j].affichage);
+            }
 
         }
         printf("\n");
@@ -67,6 +98,10 @@ void rendering_labyrinthe(case_lab ** lab, int row, int col){
                 lab[i][j].affichage =  '#';
             } else if (lab[i][j].val == 1){
                 lab[i][j].affichage = 'o';
+            }else if (lab[i][j].val == 2){
+                lab[i][j].affichage = 'b';
+            }else if (lab[i][j].val == 3){
+                lab[i][j].affichage = 'p';
             }else{
                 lab[i][j].affichage = ' ';
             }
@@ -96,6 +131,37 @@ int fin_de_generation(case_lab **lab, int row, int col){
     }
 
     return 1;
+}
+
+/*
+ * @param Val : 2 - Bonus / 3 - Trap
+ * */
+void add_a_rand_bonus_or_trap(case_lab ** lab, int row, int col, int val){
+    int rand_row = rand()%row;
+    int rand_col = rand()%col;
+
+    while (lab[rand_row][rand_col].val != 0){
+        rand_row = rand()%row;
+        rand_col = rand()%col;
+    }
+
+    lab[rand_row][rand_col].val = val;
+}
+
+void add_bonus_and_traps(case_lab ** lab, int row, int col){
+
+    int nb_bonus = rand()%MAXBONUS;
+    int nb_trap = rand()%MAXBONUS;
+
+    for (int i = 0; i < nb_bonus; i++){
+        add_a_rand_bonus_or_trap(lab, row, col, 2);
+    }
+
+    for (int i = 0; i < nb_trap; i++){
+        add_a_rand_bonus_or_trap(lab, row, col, 3);
+    }
+
+    rendering_labyrinthe(lab, row, col);
 }
 
 void remove_wall(case_lab ** lab, int row, int col){
@@ -144,9 +210,6 @@ void remove_wall(case_lab ** lab, int row, int col){
             }
         }
     }
-
-
-
 }
 
 void generate_labyrinthe(case_lab ** lab, int row, int col){
@@ -193,6 +256,8 @@ void generate_labyrinthe(case_lab ** lab, int row, int col){
     /*Player at the enter*/
     lab[1][0].val = 1;
     lab[row - 2][col - 1].val = 0;
+
+    add_bonus_and_traps(lab, row, col);
 
     /*Attribue a char to each case depending of the value*/
     rendering_labyrinthe(lab, row, col);
