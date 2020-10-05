@@ -81,14 +81,17 @@ void play(case_lab ** lab, int row, int col){
     }else{
         char direction;
         int end = 0;
+        int score = 0;
 
         do{
-            display_labyrinthe(lab, row, col);
+
+            display_current_game(lab, row, col, score);
+
             direction = getch();
             //scanf("%c", &direction);
             //clear_buffer();
             if (direction == 'z' || direction == 'q' || direction == 's' || direction == 'd'){
-                end = play_turn(lab, row, col, direction);
+                end = play_turn(lab, row, col, direction, &score);
 
             }
         }while (end != 1);
@@ -107,7 +110,7 @@ void menu(case_lab ** lab, int row, int col){
     int choix = 0;
 
     while (choix <= 0 || choix > 4){
-        printf("Que voulez vous faire :\n");
+        printf("Que voulez-vous faire :\n");
         printf("1 : Creer un labyrinthe\n");
         printf("2 : Charger un labyrinthe\n");
         printf("3 : Jouer\n");

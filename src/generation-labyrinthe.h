@@ -20,6 +20,8 @@ typedef struct case_lab
 
 } case_lab;
 
+void display_current_game(case_lab ** lab, int row, int col, int score);
+
 void display_labyrinthe(case_lab ** lab, int row, int col);
 
 void display_test_labyrinthe(case_lab ** lab, int row, int col);
@@ -42,7 +44,7 @@ void remove_wall(case_lab ** lab, int row, int col);
 
 void generate_labyrinthe(case_lab ** lab, int row, int col);
 
-int play_turn(case_lab** lab, int row, int col, char direction);
+int play_turn(case_lab** lab, int row, int col, char direction, int * score);
 
 
 #endif

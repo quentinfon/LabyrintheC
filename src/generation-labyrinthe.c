@@ -5,6 +5,9 @@
 #define MAXBONUS 10
 #define MAXTRAP 10
 
+#define VALBONUS 2
+#define VALTRAP 2
+
 /*Set the console color*/
 void SetColorAndBackground(int ForgC, int BackC)
 {
@@ -12,9 +15,18 @@ void SetColorAndBackground(int ForgC, int BackC)
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), wColor);
 }
 
-void display_labyrinthe(case_lab ** lab, int row, int col){
+void display_current_game(case_lab ** lab, int row, int col, int score){
 
     system("@cls||clear");
+
+    printf("SCORE : %d \n", score);
+
+    display_labyrinthe(lab, row, col);
+}
+
+void display_labyrinthe(case_lab ** lab, int row, int col){
+
+
 
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
@@ -281,7 +293,7 @@ void player_position(int* pos_x, int* pos_y, case_lab ** lab, int row, int col){
 }
 
 /* return if the player is on the last cell of the labyrinth */
-int play_turn(case_lab** lab, int row, int col, char direction){
+int play_turn(case_lab** lab, int row, int col, char direction, int * score){
 
     int x = 0;
     int y = 0;
@@ -308,11 +320,30 @@ int play_turn(case_lab** lab, int row, int col, char direction){
     player_position(&pos_x_player, &pos_y_player, lab, row, col);
 
     if ( y != 0 && pos_y_player + y >= 0 && pos_y_player + y < row && lab[pos_y_player+y][pos_x_player].val != -1){
+
+        /*Applie Bonus and Traps*/
+        if (lab[pos_y_player+y][pos_x_player].val == 2){
+            *score -= VALBONUS;
+        } else if (lab[pos_y_player+y][pos_x_player].val == 3){
+            *score += VALTRAP;
+        }
+
         lab[pos_y_player][pos_x_player].val = 0;
         lab[pos_y_player+y][pos_x_player].val = 1;
+        *score += 1;
+
     } else if ( x != 0 && pos_x_player + x >= 0 && pos_x_player + x < col && lab[pos_y_player][pos_x_player+x].val != -1){
+
+        /*Applie Bonus and Traps*/
+        if (lab[pos_y_player][pos_x_player+x].val == 2){
+            *score -= VALBONUS;
+        } else if (lab[pos_y_player][pos_x_player+x].val == 3){
+            *score += VALTRAP;
+        }
+
         lab[pos_y_player][pos_x_player].val = 0;
         lab[pos_y_player][pos_x_player+x].val = 1;
+        *score += 1;
     }
 
     rendering_labyrinthe(lab, row, col);
