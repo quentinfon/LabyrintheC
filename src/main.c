@@ -7,7 +7,7 @@ int main() {
 
     case_lab ** lab = NULL;
 
-    menu(lab, 0, 0);
+    menu(lab, 0, 0, "");
 
     return 0;
 }

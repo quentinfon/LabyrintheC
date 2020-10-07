@@ -1,4 +1,5 @@
 #include "menu.h"
+#include "lab_ranking.h"
 
 void clear_buffer(){
     while ((getchar()) != '\n');
@@ -25,6 +26,7 @@ void create_labyrinthe(case_lab ** lab){
     do {
         printf("Nom du labyrinthe : \n");
         scanf("%[^\n]", name);
+        clear_buffer();
     }while (is_valid_name(name) == 0);
 
     lab = init_labyrinthe(row, col);
@@ -35,7 +37,7 @@ void create_labyrinthe(case_lab ** lab){
     /*Saving the generated labyrinthe*/
     save_labyrinthe(lab, row, col, name);
 
-    menu(lab, row, col);
+    menu(lab, row, col, name);
 }
 
 
@@ -70,14 +72,14 @@ void load_labyrinthe(case_lab ** lab){
         display_labyrinthe(lab, row, col);
     }
 
-    menu(lab, row, col);
+    menu(lab, row, col, file_name);
 }
 
-void play(case_lab ** lab, int row, int col){
+void play(case_lab ** lab, int row, int col, char* lab_name){
 
     if (lab == NULL){
         printf("Aucun labyrinthe charge\n");
-        menu(lab, row, col);
+        menu(lab, row, col, "");
     }else{
         char direction;
         int end = 0;
@@ -96,14 +98,16 @@ void play(case_lab ** lab, int row, int col){
             }
         }while (end != 1);
 
+        display_scores(lab_name, score);
+
     }
 
     /*Reset the lab in memory*/
-    menu(NULL, 0, 0);
+    menu(NULL, 0, 0, "");
 
 }
 
-void menu(case_lab ** lab, int row, int col){
+void menu(case_lab ** lab, int row, int col, char* lab_name){
 
     printf("##### LABYRINTHE #####\n");
 
@@ -129,7 +133,7 @@ void menu(case_lab ** lab, int row, int col){
             load_labyrinthe(lab);
             break;
         case 3:
-            play(lab, row, col);
+            play(lab, row, col, lab_name);
             break;
         default:
             break;

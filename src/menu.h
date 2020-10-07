@@ -11,8 +11,8 @@ void create_labyrinthe(case_lab ** lab);
 
 void load_labyrinthe(case_lab ** lab);
 
-void play(case_lab ** lab, int row, int col);
+void play(case_lab ** lab, int row, int col, char* lab_name);
 
-void menu(case_lab ** lab, int row, int col);
+void menu(case_lab ** lab, int row, int col, char* lab_name);
 
 #endif
