@@ -18,9 +18,11 @@ void display_scores(char* lab_name, int actual_score){
 
             printf(" - %d : %s \n", ranking[i].score, ranking[i].name);
             score_count ++;
-            if (actual_score > ranking[i].score){
-                insert_new_score = 1;
-            }
+
+        }
+
+        if (actual_score > ranking[i].score){
+            insert_new_score = 1;
         }
     }
 
@@ -39,13 +41,15 @@ void display_scores(char* lab_name, int actual_score){
 void add_score(score_lab * ranking, int score){
 
     int index_score = -1;
-    for (int i = 9; i <= 0 ; i--) {
+    for (int i = 9; i >= 0 ; i--) {
 
-        if (ranking[i].score < score){
+        if (ranking[i].score > score || ranking[i].score == -1){
             index_score = i;
         }
 
     }
+
+    printf("Valuer de index_score : %d \n", index_score);
 
     /*If the score have to be insert*/
     if (index_score != -1){
@@ -54,14 +58,14 @@ void add_score(score_lab * ranking, int score){
         char name[100];
         scanf("%[^\n]", name);
 
-        for (int i = 9; i <= index_score ; i--) {
+        for (int i = 9; i >= index_score ; i--) {
 
             if (i == index_score){
                 ranking[i].score = score;
-                ranking[i].name = name;
+                strcpy(ranking[i].name, name);
             } else{
                 ranking[i].score = ranking[i-1].score;
-                ranking[i].name = ranking[i-1].name;
+                strcpy(ranking[i].name, ranking[i-1].name);
             }
 
         }
@@ -97,8 +101,7 @@ score_lab * read_rank_file(char* lab_name){
         score_lab * new_ranking = (score_lab *) malloc( 10 * sizeof(score_lab));
         for (int i = 0; i < 10; i++) {
             new_ranking[i].score = -1;
-            new_ranking[i].name = malloc(100*sizeof(char));
-            new_ranking[i].name = "";
+            strcpy(new_ranking[i].name, "");
         }
 
         return new_ranking;
@@ -119,7 +122,7 @@ void save_rank_file(char* lab_name, score_lab ranking[10]){
     fwrite(ranking, sizeof(score_lab) * 10, 1, fichier);
 
     if(fwrite != 0)
-        printf("Le labyrinthe a bien ete enregistre !\n");
+        printf("Les scores ont bien ete enregistre !\n");
     else
         printf("Erreur lors de l'enregistrement du labyrinthe !\n");
 

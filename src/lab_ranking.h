@@ -4,7 +4,7 @@
 
 typedef struct score_lab
 {
-    char* name;
+    char name[100];
     int score;
 
 } score_lab;
