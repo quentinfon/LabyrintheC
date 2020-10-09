@@ -15,6 +15,6 @@ void save_rank_file(char* lab_name, score_lab ranking[10]);
 
 void display_scores(char* lab_name, int actual_score);
 
-void add_score(score_lab * ranking, int score);
+int add_score(score_lab * ranking, int score);
 
 #endif

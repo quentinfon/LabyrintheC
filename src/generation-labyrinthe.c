@@ -1,7 +1,7 @@
 #include "generation-labyrinthe.h"
 
-#define MAXBONUS 10
-#define MAXTRAP 10
+#define MAXBONUS 1
+#define MAXTRAP 1
 
 #define VALBONUS 2
 #define VALTRAP 2
@@ -160,8 +160,8 @@ void add_a_rand_bonus_or_trap(case_lab ** lab, int row, int col, int val){
 
 void add_bonus_and_traps(case_lab ** lab, int row, int col){
 
-    int nb_bonus = rand()%MAXBONUS;
-    int nb_trap = rand()%MAXBONUS;
+    int nb_bonus = rand()%(MAXBONUS * (row*col)/25);
+    int nb_trap = rand()%(MAXTRAP * (row*col)/25);
 
     for (int i = 0; i < nb_bonus; i++){
         add_a_rand_bonus_or_trap(lab, row, col, 2);

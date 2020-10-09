@@ -10,8 +10,14 @@ void display_scores(char* lab_name, int actual_score){
     printf("Scores sur le labyrinthe %s :\n", lab_name);
 
     int score_count = 0;
-    int insert_new_score = 0;
     score_lab * ranking = read_rank_file(lab_name);
+
+
+    /*Adding the new score*/
+    if(add_score(ranking, actual_score) == 1){
+        save_rank_file(lab_name, ranking);
+    }
+
 
     for (int i = 0; i < 10; i++) {
         if (ranking[i].score != -1){
@@ -20,25 +26,15 @@ void display_scores(char* lab_name, int actual_score){
             score_count ++;
 
         }
-
-        if (actual_score > ranking[i].score){
-            insert_new_score = 1;
-        }
     }
 
     if (score_count == 0){
         printf("Aucun score pour ce labyrinthe \n");
     }
 
-    /*Adding the new score*/
-    if (insert_new_score == 1){
-        add_score(ranking, actual_score);
-        save_rank_file(lab_name, ranking);
-    }
-
 }
 
-void add_score(score_lab * ranking, int score){
+int add_score(score_lab * ranking, int score){
 
     int index_score = -1;
     for (int i = 9; i >= 0 ; i--) {
@@ -49,12 +45,12 @@ void add_score(score_lab * ranking, int score){
 
     }
 
-    printf("Valuer de index_score : %d \n", index_score);
 
     /*If the score have to be insert*/
     if (index_score != -1){
 
         /*Get the user name*/
+        printf("Nom du joueur : \n");
         char name[100];
         scanf("%[^\n]", name);
 
@@ -70,8 +66,10 @@ void add_score(score_lab * ranking, int score){
 
         }
 
+        return 1;
     }
 
+    return 0;
 }
 
 /*Return the rank array if there is no save return an empty score array*/
