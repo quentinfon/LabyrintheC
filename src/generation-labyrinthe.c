@@ -3,6 +3,7 @@
 #define MAXBONUS 1
 #define MAXTRAP 1
 
+/* Value of bunuses an traps */
 #define VALBONUS 2
 #define VALTRAP 2
 
@@ -57,6 +58,7 @@ void display_labyrinthe(case_lab ** lab, int row, int col){
 
 }
 
+/* Use to display the values of the labyrinth cells */
 void display_test_labyrinthe(case_lab ** lab, int row, int col){
 
     for (int i = 0; i < row; i++) {
@@ -72,7 +74,7 @@ void display_test_labyrinthe(case_lab ** lab, int row, int col){
 case_lab * alloue_cases_labyrinthe(int col){
     case_lab *row_of_cases = (case_lab*) malloc(col * sizeof(case_lab));
     for (int i = 0; i < col; i++) {
-        row_of_cases[i].affichage = '#';
+        row_of_cases[i].affichage = ' ';
         row_of_cases[i].val = 0;
     }
     return row_of_cases;
