@@ -55,6 +55,8 @@ void repo_check(){
 }
 
 void display_save_list(){
+    repo_check();
+
     DIR *d;
     struct dirent *dir;
     d = opendir("save");
