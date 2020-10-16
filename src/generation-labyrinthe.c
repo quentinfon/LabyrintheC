@@ -3,7 +3,7 @@
 #define MAXBONUS 1
 #define MAXTRAP 1
 
-/* Value of bunuses an traps */
+/* Value of bunuses and traps */
 #define VALBONUS 2
 #define VALTRAP 2
 

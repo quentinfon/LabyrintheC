@@ -1,4 +1,5 @@
 #include "lab_saving.h"
+#include <sys/stat.h>
 
 int is_cfg_format(struct dirent *dir){
 
@@ -21,7 +22,7 @@ int is_cfg_format(struct dirent *dir){
 int is_in_file_list(char * file_name){
     DIR *d;
     struct dirent *dir;
-    d = opendir("../save");
+    d = opendir("save");
     if (d)
     {
         while ((dir = readdir(d)) != NULL)
@@ -39,10 +40,24 @@ int is_in_file_list(char * file_name){
     return 0;
 }
 
+/*Check if the repos exist in case the file doesn't exit it create the repo */
+void repo_check(){
+
+    struct stat st = {0};
+
+    if (stat("save", &st) == -1) {
+        mkdir("save");
+    }
+
+    if (stat("scores", &st) == -1) {
+        mkdir("scores");
+    }
+}
+
 void display_save_list(){
     DIR *d;
     struct dirent *dir;
-    d = opendir("../save");
+    d = opendir("save");
     /*number of lab saved*/
     int count = 0;
 
@@ -68,12 +83,14 @@ void save_labyrinthe(case_lab **lab, int row, int col, char * file_name){
 
     FILE *fichier;
 
+    repo_check();
     /*location of the save file*/
-    char * file_path = (char*) malloc(sizeof(file_name) + sizeof(char) * 15);
-    strcpy(file_path, "../save/");
+    char * file_path = (char*) calloc(sizeof(file_name) + 15, sizeof(char));
+    strcat(file_path, "save/");
     strcat(file_path, file_name);
     strcat(file_path, ".cfg");
 
+    printf("\n\n%s", file_path);
     fichier = fopen (file_path, "wb");
 
     fwrite(&row, sizeof(int), 1, fichier);
@@ -109,9 +126,10 @@ case_lab ** load_labyrinthe_from_file(char * file_name, int *row, int *col){
 
     FILE *fichier;
 
+    repo_check();
     /*location of the save file*/
-    char * file_path = (char*) malloc(sizeof(file_name) + sizeof(char) * 15);
-    strcpy(file_path, "../save/");
+    char * file_path = (char*) calloc(sizeof(file_name) + 15, sizeof(char));
+    strcat(file_path, "save/");
     strcat(file_path, file_name);
     strcat(file_path, ".cfg");
 
