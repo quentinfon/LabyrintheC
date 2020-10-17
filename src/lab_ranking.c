@@ -24,8 +24,6 @@
 
 void display_scores(char* lab_name, int actual_score){
 
-    printf("Scores sur le labyrinthe %s :\n", lab_name);
-
     int score_count = 0;
     score_lab * ranking = read_rank_file(lab_name);
 
@@ -35,7 +33,7 @@ void display_scores(char* lab_name, int actual_score){
         save_rank_file(lab_name, ranking);
     }
 
-
+    printf("Scores sur le labyrinthe %s :\n", lab_name);
     for (int i = 0; i < 10; i++) {
         if (ranking[i].score != -1){
 
@@ -137,11 +135,6 @@ void save_rank_file(char* lab_name, score_lab ranking[10]){
     fichier = fopen (file_path, "wb");
 
     fwrite(ranking, sizeof(score_lab) * 10, 1, fichier);
-
-    if(fwrite != 0)
-        printf("Les scores ont bien ete enregistre !\n");
-    else
-        printf("Erreur lors de l'enregistrement du labyrinthe !\n");
 
     /* close file */
     fclose (fichier);
