@@ -20,12 +20,24 @@
 
 #include "generation-labyrinthe.h"
 
+/**
+ * @brief Function that make the user create a new maze
+ */
 void create_labyrinthe(case_lab ** lab);
 
+/**
+ * @brief Function that make the user load a maze saved
+ */
 void load_labyrinthe(case_lab ** lab);
 
+/**
+ * @brief Interface with the user to play a maze
+ */
 void play(case_lab ** lab, int row, int col, char* lab_name);
 
+/**
+ * @brief Main menu interface with the user
+ */
 void menu(case_lab ** lab, int row, int col, char* lab_name);
 
 #endif
