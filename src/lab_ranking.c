@@ -51,6 +51,7 @@ void display_scores(char* lab_name, int actual_score){
 
 }
 
+
 int add_score(score_lab * ranking, int score){
 
     int index_score = -1;
@@ -89,13 +90,13 @@ int add_score(score_lab * ranking, int score){
     return 0;
 }
 
-/*Return the rank array if there is no save return an empty score array*/
+
 score_lab * read_rank_file(char* lab_name){
     FILE *fichier;
 
     /*location of the save file*/
     char * file_path = (char*) malloc(sizeof(lab_name) + sizeof(char) * 20);
-    strcpy(file_path, "../scores/");
+    strcpy(file_path, "./scores/");
     strcat(file_path, lab_name);
     strcat(file_path, ".score");
 
@@ -123,12 +124,13 @@ score_lab * read_rank_file(char* lab_name){
     }
 }
 
+
 void save_rank_file(char* lab_name, score_lab ranking[10]){
     FILE *fichier;
 
     /*location of the save file*/
     char * file_path = (char*) malloc(sizeof(lab_name) + sizeof(char) * 20);
-    strcpy(file_path, "../scores/");
+    strcpy(file_path, "./scores/");
     strcat(file_path, lab_name);
     strcat(file_path, ".score");
 
