@@ -17,8 +17,8 @@
 
 #include <stdlib.h>
 #include <time.h>
-#include "generation-labyrinthe.h"
-#include "menu.h"
+#include "../include/generation-labyrinthe.h"
+#include "../include/menu.h"
 
 int main() {
 

@@ -15,9 +15,9 @@
  * @date    10/2020
  */
 
-#include "menu.h"
-#include "lab_ranking.h"
-#include "lab_saving.h"
+#include "../include/menu.h"
+#include "../include/lab_ranking.h"
+#include "../include/lab_saving.h"
 #include <conio.h>
 #include <stdio.h>
 

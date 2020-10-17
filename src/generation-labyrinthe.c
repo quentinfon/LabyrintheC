@@ -15,7 +15,7 @@
  * @date    10/2020
  */
 
-#include "generation-labyrinthe.h"
+#include "../include/generation-labyrinthe.h"
 #include "stdio.h"
 #include <stdlib.h>
 #include <wincon.h>

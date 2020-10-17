@@ -16,9 +16,9 @@
  */
 
 #include "minunit.h"
-#include "../generation-labyrinthe.h"
-#include "../lab_ranking.h"
-#include "../lab_saving.h"
+#include "../../include/generation-labyrinthe.h"
+#include "../../include/lab_ranking.h"
+#include "../../include/lab_saving.h"
 
 
 void test_setup(void) {

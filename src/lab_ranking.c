@@ -19,7 +19,7 @@
 #include <mem.h>
 #include <malloc.h>
 #include <io.h>
-#include "lab_ranking.h"
+#include "../include/lab_ranking.h"
 
 
 void display_scores(char* lab_name, int actual_score){
