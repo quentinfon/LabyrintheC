@@ -1,7 +1,19 @@
-#include "stdio.h"
-#include <stdlib.h>
-#include <wincon.h>
-#include <winbase.h>
+/*
+ * ENSICAEN
+ * 6 Boulevard Maréchal Juin
+ * F-14050 Caen Cedex
+ *
+ * This file is owned by ENSICAEN students. No portion of this
+ * document may be reproduced, copied or revised without written
+ * permission of the authors.
+ */
+
+/*
+ * Functions to generate a labyrinth
+ * @author  Quentin Fontaine
+ * @version 1.0
+ * @date    10/2020
+ */
 
 #ifndef GENERATION_LABYRINTHE_H
 #define GENERATION_LABYRINTHE_H

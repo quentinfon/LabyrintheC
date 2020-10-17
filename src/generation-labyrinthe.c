@@ -1,4 +1,26 @@
+/*
+ * ENSICAEN
+ * 6 Boulevard Maréchal Juin
+ * F-14050 Caen Cedex
+ *
+ * This file is owned by ENSICAEN students. No portion of this
+ * document may be reproduced, copied or revised without written
+ * permission of the authors.
+ */
+
+/*
+ * Functions to generate a labyrinth
+ * @author  Quentin Fontaine
+ * @version 1.0
+ * @date    10/2020
+ */
+
 #include "generation-labyrinthe.h"
+#include "stdio.h"
+#include <stdlib.h>
+#include <wincon.h>
+#include <winbase.h>
+
 
 #define MAXBONUS 1
 #define MAXTRAP 1

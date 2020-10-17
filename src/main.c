@@ -1,5 +1,24 @@
+/*
+ * ENSICAEN
+ * 6 Boulevard Maréchal Juin
+ * F-14050 Caen Cedex
+ *
+ * This file is owned by ENSICAEN students. No portion of this
+ * document may be reproduced, copied or revised without written
+ * permission of the authors.
+ */
 
-#include "main.h"
+/*
+ * Main file to execute the game
+ * @author  Quentin Fontaine
+ * @version 1.0
+ * @date    10/2020
+ */
+
+#include <stdlib.h>
+#include <time.h>
+#include "generation-labyrinthe.h"
+#include "menu.h"
 
 int main() {
 

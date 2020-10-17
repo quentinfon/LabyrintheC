@@ -1,5 +1,25 @@
+/*
+ * ENSICAEN
+ * 6 Boulevard Maréchal Juin
+ * F-14050 Caen Cedex
+ *
+ * This file is owned by ENSICAEN students. No portion of this
+ * document may be reproduced, copied or revised without written
+ * permission of the authors.
+ */
+
+/*
+ * Functions to manage the menu of the game
+ * @author  Quentin Fontaine
+ * @version 1.0
+ * @date    10/2020
+ */
+
 #include "menu.h"
 #include "lab_ranking.h"
+#include "lab_saving.h"
+#include <conio.h>
+#include <stdio.h>
 
 void clear_buffer(){
     while ((getchar()) != '\n');

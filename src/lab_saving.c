@@ -1,5 +1,25 @@
+/*
+ * ENSICAEN
+ * 6 Boulevard Maréchal Juin
+ * F-14050 Caen Cedex
+ *
+ * This file is owned by ENSICAEN students. No portion of this
+ * document may be reproduced, copied or revised without written
+ * permission of the authors.
+ */
+
+/*
+ * Functions to save a labyrinth in a binary file
+ * @author  Quentin Fontaine
+ * @version 1.0
+ * @date    10/2020
+ */
+
 #include "lab_saving.h"
 #include <sys/stat.h>
+#include <mem.h>
+#include <stdio.h>
+#include <malloc.h>
 
 int is_cfg_format(struct dirent *dir){
 

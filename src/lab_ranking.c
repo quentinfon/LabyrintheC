@@ -1,3 +1,20 @@
+/*
+ * ENSICAEN
+ * 6 Boulevard Maréchal Juin
+ * F-14050 Caen Cedex
+ *
+ * This file is owned by ENSICAEN students. No portion of this
+ * document may be reproduced, copied or revised without written
+ * permission of the authors.
+ */
+
+/*
+ * Functions to manage the ranking of players
+ * @author  Quentin Fontaine
+ * @version 1.0
+ * @date    10/2020
+ */
+
 #include <stdio.h>
 #include <mem.h>
 #include <malloc.h>
