@@ -184,8 +184,8 @@ void add_a_rand_bonus_or_trap(case_lab ** lab, int row, int col, int val){
 
 void add_bonus_and_traps(case_lab ** lab, int row, int col){
 
-    int nb_bonus = rand()%(MAXBONUS * (row*col)/25);
-    int nb_trap = rand()%(MAXTRAP * (row*col)/25);
+    int nb_bonus = rand()%(MAXBONUS * (row*col)/25) + 1;
+    int nb_trap = rand()%(MAXTRAP * (row*col)/25) + 1;
 
     for (int i = 0; i < nb_bonus; i++){
         add_a_rand_bonus_or_trap(lab, row, col, 2);

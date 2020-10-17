@@ -60,5 +60,7 @@ void generate_labyrinthe(case_lab ** lab, int row, int col);
 
 int play_turn(case_lab** lab, int row, int col, char direction, int * score);
 
+void player_position(int* pos_x, int* pos_y, case_lab ** lab, int row, int col);
+
 
 #endif
