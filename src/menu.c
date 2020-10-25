@@ -121,6 +121,7 @@ void play(case_lab ** lab, int row, int col, char* lab_name){
         display_scores(lab_name, score);
 
     }
+    free_labyrinthe(lab, row, col);
 
     /*Reset the lab in memory*/
     menu(NULL, 0, 0, "");

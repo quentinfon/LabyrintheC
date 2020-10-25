@@ -92,6 +92,14 @@ void display_test_labyrinthe(case_lab ** lab, int row, int col){
 
 }
 
+/* free the memory taken by the maze */
+void free_labyrinthe(case_lab ** lab, int row, int col){
+    for (int i = 0; i < row; i++) {
+        free(lab[i]);
+    }
+    free(lab);
+}
+
 /*Allocate a row of the labyrinthe in memory*/
 case_lab * alloue_cases_labyrinthe(int col){
     case_lab *row_of_cases = (case_lab*) malloc(col * sizeof(case_lab));

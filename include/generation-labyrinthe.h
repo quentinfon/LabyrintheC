@@ -91,6 +91,14 @@ void add_a_rand_bonus_or_trap(case_lab ** lab, int row, int col, int val);
 case_lab * alloue_cases_labyrinthe(int col);
 
 /**
+ * @brief Function that free the memory taken by a maze
+ * @param lab The maze to free
+ * @param row The maze row number
+ * @param col The maze col number
+ */
+void free_labyrinthe(case_lab ** lab, int row, int col);
+
+/**
  * @brief Function to replace all the value of the maze cells by an other one
  * @param target The value to replace
  * @param new_value The new value
